@@ -8,6 +8,7 @@
 
 #ifndef CLCH_INTERFACE_H_
 #define CLCH_INTERFACE_H_
+#include "CLCD_prv.h"
 
 void CLCD_voidSendCmd(uint8 Copy_u8Cmd);
 
@@ -21,7 +22,7 @@ NULL_PTR_Error_State_t CLCD_u8SendString (const char* Copy_pcharString);
 
 void CLCD_voidSendNumber(sint32 Copy_s32Number);
 
-void CLCD_voidGoToXY(uint8 Copy_u8XPos, uint8 Copy_u8YPos);
+CLCD_PostionXY_Status CLCD_u8GoToXY(uint8 Copy_u8XPos, uint8 Copy_u8YPos);
 
 void CLCD_voidSendSpecialCharacter(uint8 *Copy_u8Pattern,uint8 Copy_u8PatternNumber, uint8 Copy_u8XPos, uint8 Copy_u8YPos);
 

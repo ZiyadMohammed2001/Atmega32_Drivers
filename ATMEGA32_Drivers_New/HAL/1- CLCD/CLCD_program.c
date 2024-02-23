@@ -203,7 +203,7 @@ void CLCD_voidSendNumber(sint32 Copy_s32Number)
 CLCD_PostionXY_Status CLCD_u8GoToXY(uint8 Copy_u8XPos, uint8 Copy_u8YPos)
 {
 	uint8 Local_u8DDRamAdd =0;
-	uint8 Local_u8ErrorState = CLCD_POSITION_WAITING;
+	CLCD_PostionXY_Status Local_u8ErrorState = CLCD_POSITION_WAITING;
 	if(Copy_u8XPos <= CLCD_POSITION_X_MAX)
 	{
 		Local_u8ErrorState = CLCD_POSITION_X_SUCEESS;

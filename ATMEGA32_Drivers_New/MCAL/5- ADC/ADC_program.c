@@ -280,6 +280,9 @@ void __vector_16 (void)
 			/*ADC is now IDLE*/
 			ADC_u8BuzyFlag = ADC_IDLE;
 
+			/*Disable the ADC Interrupt.*/
+			CLR_BIT(ADCSRA, ADCSRA_ADIE);
+
 			/*Invoke the notification function.*/
 			if((ADC_pstChainData->NotificationFunc)!= NULL)
 			{
