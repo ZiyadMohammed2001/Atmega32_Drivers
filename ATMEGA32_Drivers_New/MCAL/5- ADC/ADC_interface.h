@@ -47,9 +47,41 @@ typedef enum
 	ADC_SINGLE_ENDED_0_VOLT,
 }ADC_Channel_t;
 
+typedef struct
+{
+	uint8 ChainSize;
+	uint8* ChainArr;
+	void(*NotificationFunc)(void);
+	uint16* ResultArr;
+}ADC_ChainConv_t;
+
+/**
+ * @Details: ADC Function Init.
+ */
 void ADC_voidInit(void);
 
+/**
+ * @Details ADC_u16StartConversionSynch to start conversion synchronous.
+ * @param Copy_u8Channel for channel Number.
+ * @param Copy_pu16ADC_Data	For Results.
+ * @return Error State.
+ */
+
 ADC_Error_t ADC_u16StartConversionSynch(uint8 Copy_u8Channel, uint16*Copy_pu16ADC_Data);
-ADC_Error_t ADC_u16StartConversionASynch(uint8 Copy_u8Channel, uint16*Copy_pu16ADC_Data, void(*Copy_pvNotificatiobFunc)(void));
+
+/**
+ * @Details ADC_u16StartSingleConversionASynch to start conversion Asynchronous.
+ * @param Copy_u8Channel for channel Number.
+ * @param Copy_pu16ADC_Data	For Results.
+ * @return Error State.
+ */
+ADC_Error_t ADC_u16StartSingleConversionASynch(uint8 Copy_u8Channel, uint16*Copy_pu16ADC_Data, void(*Copy_pvNotificatiobFunc)(void));
+
+/**
+ * @Details ADC_u8StartChainConvertersionAsynch to chart chin converter Asynchronous.
+ * @param Copy_pstChain
+ * @return
+ */
+ADC_Error_t ADC_u8StartChainConvertersionAsynch(ADC_ChainConv_t* Copy_pstChain);
 
 #endif

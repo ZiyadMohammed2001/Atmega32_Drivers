@@ -44,6 +44,9 @@
 
 #define ADC_ADMUX_ANALOG_CHANNLE_MASKING		0b11100000u
 
+#define ADC_SINGLE_CONV_ASYNCH						0u
+#define ADC_CHAIN_CONV_ASYNCH						1u
+
 typedef enum ADC_Error
 {
 	ADC_CHANNEL_OK=0u,
