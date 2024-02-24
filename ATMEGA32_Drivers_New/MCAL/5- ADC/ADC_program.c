@@ -204,7 +204,7 @@ ADC_Error_t ADC_u8StartChainConvertersionAsynch(ADC_ChainConv_t* Copy_pstChain)
 			SET_BIT(ADCSRA,ADCSRA_ADSC);
 
 			/*Enable ADC Conversion Complete Interrupt.*/
-			SET_BIT(ADCSRA,ADCSRA_ADSC);
+			SET_BIT(ADCSRA,ADCSRA_ADIE);
 		}
 		else
 		{
