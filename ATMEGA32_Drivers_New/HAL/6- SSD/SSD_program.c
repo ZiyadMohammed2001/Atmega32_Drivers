@@ -79,6 +79,7 @@ SSD_ErrorStates_t SSD_u8SetNumber(SSD_t const *Copy_stSSD, uint8 Copy_u8Number)
 			break;
 		default:
 			Local_u8Error = SSD_WRONG_CONFIGURATION;
+			break;
 		}
 	}
 	return Local_u8Error;
@@ -99,6 +100,7 @@ SSD_ErrorStates_t SSD_EnableDotLED(SSDDotLED_t const * Copy_SSDDotLED)
 			break;
 		default:
 			Local_u8Error = SSD_WRONG_CONFIGURATION;
+			break;
 		}
 	}
 	else
@@ -123,6 +125,7 @@ SSD_ErrorStates_t SSD_DisableDotLED(SSDDotLED_t const * Copy_SSDDotLED)
 			break;
 		default:
 			Local_u8Error = SSD_WRONG_CONFIGURATION;
+			break;
 		}
 	}
 	else
