@@ -42,12 +42,12 @@
  *
  * Options (PHASE-CORRECT-PWM MODE):-
  * 			1-TIMER0_u8_OC0_DISCONNECTED
- * 			2-TIMER0_u8_OC0_CLEAR			(Clear OC0 on compare match when up-counting. Set OC0 on comparematch when downcounting.)
- * 			3-TIMER0_u8_OC0_SET				(Set OC0 on compare match when up-counting. Clear OC0 on compare match when downcounting.)
+ * 			2-TIMER0_u8_OC0_CLEAR			(Clear OC0 on compare match when up-counting. Set OC0 on compare match when down counting.)
+ * 			3-TIMER0_u8_OC0_SET				(Set OC0 on compare match when up-counting. Clear OC0 on compare match when down counting.)
  */
 
 
-#define TIMER0_u8_OUTPUT_MODE	TIMER0_OC0_DISCONNECTED
+#define TIMER0_u8_OUTPUT_MODE	TIMER0_u8_OC0_CLEAR
 
 
 /*
@@ -99,7 +99,7 @@
 
 
 #define TIMER1_STATE				TIMER1_ENABLE
-#define TIMER1_CHANNEL_A_STATE		TIMER1_CHANNEL_A_DISABLE
+#define TIMER1_CHANNEL_A_STATE		TIMER1_CHANNEL_A_ENABLE
 #define TIMER1_CHANNEL_B_STATE		TIMER1_CHANNEL_B_DISABLE
 
 
@@ -120,6 +120,8 @@
  * 										14-TIMER1_u8_FAST_PWM_ICR1
  * 										15-TIMER1_u8_FAST_PWM_OCR1A
  */
+
+#define TIMER1_u8_WAVEFORM_MODE				TIMER1_u8_NORMAL
 
 #define TIMER1_u8_CHANNEL_A_WAVEFORM_MODE	TIMER1_u8_NORMAL
 #define TIMER1_u8_CHANNEL_B_WAVEFORM_MODE	TIMER1_u8_NORMAL
@@ -148,6 +150,9 @@
  *
  */
 
+#define TIMER1_u8_OUTPUT_MODE_CHANNEL_A		TIMER1_u8_OC1_DISCONNECTED
+
+#define TIMER1_u8_OUTPUT_MODE_CHANNEL_B		TIMER1_u8_OC1_DISCONNECTED
 
 #define TIMER1_u8_CHANNEL_A_OUTPUT_MODE	TIMER1_OC1_DISCONNECTED
 #define TIMER1_u8_CHANNEL_B_OUTPUT_MODE	TIMER1_OC1_DISCONNECTED

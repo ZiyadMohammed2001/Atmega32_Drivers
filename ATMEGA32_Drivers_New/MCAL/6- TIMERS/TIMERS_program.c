@@ -172,32 +172,32 @@ void TIMER_voidInit(void)
 #endif
 
 #if TIMER1_CHANNEL_A_STATE == TIMER1_CHANNEL_A_ENABLE
-#if	TIMER1_u8_OUTPUT_MODE == TIMER1_OC1_DISCONNECTED
+#if	TIMER1_u8_OUTPUT_MODE_CHANNEL_A == TIMER1_u8_OC1_DISCONNECTED
 	CLR_BIT(TCCR1A,TCCR1A_COM1A0);
 	CLR_BIT(TCCR1A,TCCR1A_COM1A1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_TOGGLE
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_A == TIMER1_u8_OC1_TOGGLE
 	SET_BIT(TCCR1A,TCCR1A_COM1A0);
 	CLR_BIT(TCCR1A,TCCR1A_COM1A1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_CLEAR
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_A == TIMER1_u8_OC1_CLEAR
 	CLR_BIT(TCCR1A,TCCR1A_COM1A0);
 	SET_BIT(TCCR1A,TCCR1A_COM1A1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_SET
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_A == TIMER1_u8_OC1_SET
 	SET_BIT(TCCR1A,TCCR1A_COM1A0);
 	SET_BIT(TCCR1A,TCCR1A_COM1A1);
 #endif
 #endif
 
 #if TIMER1_CHANNEL_B_STATE	==		TIMER1_CHANNEL_B_ENABLE
-#if	TIMER1_u8_OUTPUT_MODE == TIMER1_OC1_DISCONNECTED
+#if	TIMER1_u8_OUTPUT_MODE_CHANNEL_B == TIMER1_u8_OC1_DISCONNECTED
 	CLR_BIT(TCCR1A,TCCR1A_COM1B0);
 	CLR_BIT(TCCR1A,TCCR1A_COM1B1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_TOGGLE
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_B == TIMER1_u8_OC1_TOGGLE
 	SET_BIT(TCCR1A,TCCR1A_COM1B0);
 	CLR_BIT(TCCR1A,TCCR1A_COM1B1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_CLEAR
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_B == TIMER1_u8_OC1_CLEAR
 	CLR_BIT(TCCR1A,TCCR1A_COM1B0);
 	SET_BIT(TCCR1A,TCCR1A_COM1B1);
-#elif TIMER1_u8_OUTPUT_MODE == TIMER1_u8_OC1_SET
+#elif TIMER1_u8_OUTPUT_MODE_CHANNEL_B == TIMER1_u8_OC1_SET
 	SET_BIT(TCCR1A,TCCR1A_COM1B0);
 	SET_BIT(TCCR1A,TCCR1A_COM1B1);
 #endif
@@ -237,6 +237,7 @@ void TIMER_voidInit(void)
 #else
 #error Wrong TIMER1_u8_INPUT_CAPTURE Configuration Option.
 #endif
+	/*Interrupt State.*/
 #if ICU_TIMER1_U8_INT_STATE == ICU_TIMER1_U8_INT_ENABLE
 	SET_BIT(TIMSK,TIMSK_TICIE1);
 #elif ICU_TIMER1_U8_INT_STATE == ICU_TIMER1_U8_INT_ENABLE
@@ -495,7 +496,7 @@ Timers_ErrorState_t ICU_u8Timer1SetTriggerSrc(uint8 Copy_u8TriggerSrc)
 		break;
 	case TIMER1_u8_FALLING_INPUT_CAPTURE:
 		CLR_BIT(TCCR1B,TCCR1B_ICES1);
-	break;
+		break;
 	default:
 		Local_u8ErrorState = TIMER1_ICU_TRIGGER_SOURCE_INTERRUPT_TRIGGER_ERROR;
 		break;
@@ -550,51 +551,82 @@ void TIMER2_voidForceOutputCompare(void)
 	SET_BIT(TCCR2,TCCR2_FOC2);
 }
 
-
+void __vector_4(void) __attribute__((signal));
 void __vector_4(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER2_CTC_CALLBACK_INDEX]();
-	TIMER2_voidClearCTCFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER2_CTC_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER2_CTC_CALLBACK_INDEX]();
+		TIMER2_voidClearCTCFlag();
+	}
 }
 
+void __vector_5(void) __attribute__((signal));
 void __vector_5(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER2_OVF_CALLBACK_INDEX]();
-	TIMER2_voidClearOVFFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER2_OVF_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER2_OVF_CALLBACK_INDEX]();
+		TIMER2_voidClearOVFFlag();
+	}
 }
 
+void __vector_6(void) __attribute__((signal));
 void __vector_6(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER1_INPUT_CAPTURE_CALLBACK_INDEX]();
-	TIMER1_voidClearInputCaptureFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER1_INPUT_CAPTURE_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER1_INPUT_CAPTURE_CALLBACK_INDEX]();
+		TIMER1_voidClearInputCaptureFlag();
+	}
 }
 
+void __vector_7(void) __attribute__((signal));
 void __vector_7(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_A_CALLBACK_INDEX]();
-	TIMER1_voidChannelAClearCTCFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_A_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_A_CALLBACK_INDEX]();
+		TIMER1_voidChannelAClearCTCFlag();
+	}
 }
 
+void __vector_8(void) __attribute__((signal));
 void __vector_8(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_B_CALLBACK_INDEX]();
-	TIMER1_voidChannelBClearCTCFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_B_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER1_CTC_CHANNEL_B_CALLBACK_INDEX]();
+		TIMER1_voidChannelBClearCTCFlag();
+	}
 }
 
+void __vector_9(void) __attribute__((signal));
 void __vector_9(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER1_OVF_CALLBACK_INDEX]();
-	TIMER1_voidClearOVFFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER1_OVF_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER1_OVF_CALLBACK_INDEX]();
+		TIMER1_voidClearOVFFlag();
+	}
 }
 
+void __vector_11(void) __attribute__((signal));
 void __vector_11(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER0_OVF_CALLBACK_INDEX]();
-	TIMER0_voidClearOVFFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER0_OVF_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER0_OVF_CALLBACK_INDEX]();
+		TIMER0_voidClearOVFFlag();
+	}
 }
 
+void __vector_10(void) __attribute__((signal));
 void __vector_10(void)
 {
-	TIMERS_pvCallBAckFuncArr[TIMER0_CTC_CALLBACK_INDEX]();
-	TIMER0_voidClearCTCFlag();
+	if ((TIMERS_pvCallBAckFuncArr[TIMER0_CTC_CALLBACK_INDEX])!=NULL)
+	{
+		TIMERS_pvCallBAckFuncArr[TIMER0_CTC_CALLBACK_INDEX]();
+		TIMER0_voidClearCTCFlag();
+	}
 }

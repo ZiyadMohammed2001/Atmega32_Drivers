@@ -38,28 +38,6 @@
 #define	TIMER0_u8_DISABLE_INTERRUPT		0u
 #define	TIMER0_u8_ENABLE_INTERRUPT		1u
 
-/*				TIMER1					*/
-#define TIMER1_u8_NORMAL								0u
-#define TIMER1_u8_PWM_PHASE_CORRECT_8BIT				1u
-#define TIMER1_u8_PWM_PHASE_CORRECT_9BIT				2u
-#define TIMER1_u8_PWM_PHASE_CORRECT_10BIT				3u
-#define TIMER1_u8_CTC_OCR1A								4u
-#define TIMER1_u8_FAST_PWM_8BIT							5u
-#define TIMER1_u8_FAST_PWM_9BIT							6u
-#define TIMER1_u8_FAST_PWM_10BIT						7u
-#define TIMER1_u8_PWM_PHASE_FREQUANCY_CORRECT_ICR1		8u
-#define TIMER1_u8_PWM_PHASE_FREQUANCY_CORRECT_OCR1A		9u
-#define TIMER1_u8_PWM_PHASE_CORRECT_ICR1				10u
-#define TIMER1_u8_PWM_PHASE_CORRECT_OCR1A				11u
-#define TIMER1_u8_CTC_ICR1								12u
-#define TIMER1_u8_FAST_PWM_ICR1							13u
-#define TIMER1_u8_FAST_PWM_OCR1A						14u
-
-#define TIMER1_u8_OC1_DISCONNECTED			0u
-#define TIMER1_u8_OC1_TOGGLE				1u
-#define TIMER1_u8_OC1_CLEAR					2u
-#define TIMER1_u8_OC1_SET					3u
-
 #define	TIMER1_u8_STOP						0u
 #define	TIMER1_u8_DIV_BY_1					1u
 #define TIMER1_u8_DIV_BY_8					2u
