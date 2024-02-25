@@ -28,11 +28,6 @@ typedef enum
 #define TIMER1_CHANNEL_B_ENABLE			5u
 #define TIMER1_CHANNEL_B_DISABLE		6u
 
-
-/*Input Capture Unit Macros.*/
-#define	TIMER1_u8_FALLING_INPUT_CAPTURE		1u
-#define	TIMER1_u8_RISING_INPUT_CAPTURE		2u
-
 /*Input Capture Unit Interrupt State. */
 #define ICU_TIMER1_U8_INT_DISABLE		2u
 #define ICU_TIMER1_U8_INT_ENABLE		3u

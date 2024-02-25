@@ -124,8 +124,15 @@ typedef enum
  TIMER2_CTC_CALLBACK_INDEX				=7u,
 }TIMERS_Int_SRC_t;
 
+/*Input Capture Unit Macros.*/
+#define	TIMER1_u8_FALLING_INPUT_CAPTURE		1u
+#define	TIMER1_u8_RISING_INPUT_CAPTURE		2u
+
+
 void TIMER_voidInit(void);
 //void TIMER_voidPostInit(const Timer_Configration *  Cpy_Configuration);
+
+uint8 TIMERS_u8SetCallBack(TIMERS_Int_SRC_t Copy_u8TmrIntSource, void (*Copy_pvCallBackFunc)(void));
 
 /*										TIMER0											*/
 
