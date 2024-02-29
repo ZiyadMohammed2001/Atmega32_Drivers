@@ -26,7 +26,16 @@ void USART_Init(void)
 	UBRRL = (uint8)(ubrr_value);
 
 	/* Set frame format. */
-	UCSRC = ((USART_MODE) | (USART_PARITY_MODE) | (USART_STOP_BIT) | (USART_CHARACTER_SIZE));
+	UCSRC = ((USART_MODE) | (USART_PARITY_MODE) | (USART_STOP_BIT) | (USART_CHARACTER_SIZE) | (USART_UCSRC));
+	if((USART_CHARACTER_SIZE) == (USART_9_BIT_SIZE))
+	{
+		UCSRB &= 0b11111011;
+		UCSRB |= (1<<UCSZ2);
+	}
+	else
+	{
+		UCSRB &= 0b11111011;
+	}
 
 	/* Receiver and Transmitter States. */
 	UCSRB = ((USART_RECIEVE_STATE << RXEN) | (USART_TRANSMIT_STATE << TXEN));

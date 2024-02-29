@@ -9,6 +9,8 @@
 
 #ifndef USART_PRV_H_
 #define USART_PRV_H_
+/*USART UCSRC Register Selection*/
+#define USART_UCSRC				 (1<<URSEL)
 
 /* USART Mode Selection. */
 #define USART_ASYNCHRONOUS_MODE  (0<<UMSEL)
@@ -24,11 +26,11 @@
 #define USART_TWO_STOP_BITS      (1<<USBS)
 
 /* USART Character Size Selection. */
-#define USART_5_BIT_SIZE         (0<<UCSZ1) | (0<<UCSZ0) | (0<<UCSZ2)
-#define USART_6_BIT_SIZE         (0<<UCSZ1) | (1<<UCSZ0) | (0<<UCSZ2)
-#define USART_7_BIT_SIZE         (1<<UCSZ1) | (0<<UCSZ0) | (0<<UCSZ2)
-#define USART_8_BIT_SIZE         (1<<UCSZ1) | (1<<UCSZ0) | (0<<UCSZ2)
-#define USART_9_BIT_SIZE         (1<<UCSZ1) | (1<<UCSZ0) | (1<<UCSZ2)
+#define USART_5_BIT_SIZE         (0<<UCSZ1) | (0<<UCSZ0) //| (0<<UCSZ2)
+#define USART_6_BIT_SIZE         (0<<UCSZ1) | (1<<UCSZ0) //| (0<<UCSZ2)
+#define USART_7_BIT_SIZE         (1<<UCSZ1) | (0<<UCSZ0) //| (0<<UCSZ2)
+#define USART_8_BIT_SIZE         (1<<UCSZ1) | (1<<UCSZ0) //| (0<<UCSZ2)
+#define USART_9_BIT_SIZE         (1<<UCSZ1) | (1<<UCSZ0) //| (1<<UCSZ2)
 
 /*USART States*/
 #define USART_TRANSMIT_ENABLE 	1u
