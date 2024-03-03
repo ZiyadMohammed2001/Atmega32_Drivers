@@ -25,7 +25,7 @@ USART_Errors_t USART_Transmit(uint8 data, uint32 timeout);
 USART_Errors_t USART_Receive(uint8 *data, uint32 timeout);
 USART_Errors_t USART_TransmitString(const char *str, uint32 timeout);
 USART_Errors_t USART_ReceiveString(char *str, uint32 timeout, uint8 max_length);
-USART_Errors_t TIMERS_u8SetCallBack(USART_Int_SRC_t Copy_u8TmrIntSource, void (*Copy_pvCallBackFunc)(void));
+USART_Errors_t USART_u8SetCallBack(USART_Int_SRC_t Copy_u8TmrIntSource, void (*Copy_pvCallBackFunc)(void));
 
 
 #endif
